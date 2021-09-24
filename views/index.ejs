@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset = 'UTF-8'>
+       <meta name="viewport" content="width=device-width, initial-scale=1"> 
+       <title>Blog Mark1 | <%= title %> </title>
+    </head>
+
+    <body>
+        <%- include('D:/Machine learning/topics/backend/blog_app/partials/nav.ejs') %>
+
+        <div class='container-fluid create_one'>
+            <h2> All blogs </h2>
+            <% if (blogs.length >0) { %>
+                <% blogs.forEach(blog =>{ %>
+                <a class='single_link' href = "/blogs/<%- blog._id %>">
+                <h5 class="title"><%= blog.title %></h5></a>
+                <p class='snippet'><%= blog.snippet %><br>
+                <%= blog.Username%></p>
+            <%    })   %>
+            <%} else {%>
+                <p>Thats all folks!!</p>
+        <%    }   %>
+        </div>
+    </body>
+</html>

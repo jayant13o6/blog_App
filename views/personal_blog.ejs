@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset = 'UTF-8'>
+       <meta name="viewport" content="width=device-width, initial-scale=1"> 
+       <title>Blog Mark1 | <%= title %></title>
+    </head>
+
+    <body>
+        <%- include('D:/Machine learning/topics/backend/blog_app/partials/nav.ejs') %>
+        <!-- <p>username will be displayed</p> -->
+        <div class='container-fluid details_content'>
+            <p> Welcome <%= blogs.Username %>
+            <br>
+            
+            </p>
+
+            <% if (blogs.length >0) { %>
+                <% blogs.forEach(blog =>{ %>
+                <a class='single_link' href = "/blogs/<%- blog._id %>">
+                <h5 class="title"><%= blog.title %></h5></a>
+                <p class='snippet'><%= blog.snippet %><br></p>
+                <% if(blog.image){ %>
+                    <img src= '/<%= blog.image%>' alt='error occured' width="50px" height="50px"><br>
+                <%}%>
+            <%    })   %>
+            <%} else {%>
+                <p>Thats all folks!!</p>
+        <%    }   %>
+            
+        </div>
+    
+    </body>
+</html>

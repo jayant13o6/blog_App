@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset = 'UTF-8'>
+       <meta name="viewport" content="width=device-width, initial-scale=1"> 
+       <title>Blog Mark1</title>
+    </head>
+
+    <body>
+        <%- include('D:/Machine learning/topics/backend/blog_app/partials/nav.ejs') %>
+        
+
+        <div class=' container-fluid details_content'>
+            <h2> <%= blog.title %> </h2>
+            <div class='content'>
+                <p id='blog_id1' style='display: none;'><%= blog._id %></p>
+                <p id='userN1' style='display: none;'><%= blog.Username %></p>
+                <p><%= blog.body %></p>
+                <% if(blog.image){ %>
+                    <img src= '/<%= blog.image%>' alt='error occured' width="200px" height="200px"><br>
+                <%}%>
+            </div>  
+            
+            <!--- comments form --->
+            <div class = " card my-4">
+                <!-- <h5>leave a comment</h5>  -->
+                <div class='card-body'>
+                    <form method='POST' action="/comment">
+                        <div class = 'form-group' style="display: none;">
+                            <textarea class = 'form-control' id='blogId' name='blogId' placeholder="blogId"></textarea>
+                        </div>
+                        <div class = 'form-group' style="display: none;">
+                            <textarea class = 'form-control' id='userN' name='username' placeholder="Username" ></textarea>
+                        </div>
+                        <div class = 'form-group'>
+                            <textarea  id='textarea1' oninput="input_value()" name='comment' placeholder="Comments"></textarea>
+                        </div>
+
+                        <button type='submit' class='btn btn-primary' >Submit</button>
+                    </form>
+                </div>   
+            </div>          
+
+            <div class = 'media mb-4'>
+                <div class= 'media-body'>
+                    <h6 class='mt-0'> Comments:</h6>
+                    <% if (Comments) { %>
+                        <% Comments.forEach(Comments =>{ %>
+                            <p>comment:</p>
+                            <p><%= Comments.comments %></p>
+                        
+                    <%})} else { %>
+                         <p>nothing much!!</p>
+                        <% } %>
+                </div>
+            </div>
+            <button><a class = 'delete' data-doc='<%= blog._id%>'>Delete it</a></button>
+        </div>
+        
+    <script>
+        const trash = document.querySelector('a.delete');
+
+        trash.addEventListener('click', (e) =>{
+            const endpoint = `/blogs/${trash.dataset.doc}`;
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response)=> response.json())
+            // .then((data) => console.log(data))
+            .then((data) => window.location.href = data.redirect)
+            .catch(err =>{console.log(err)});
+
+        })
+
+        async function input_value() {
+            const trash = document.querySelector('a.delete');
+            const endpoint = `/blogs/${trash.dataset.doc}`;
+            // await fetch(endpoint,{})
+            //     .then((response)=>response.json())
+            //     .then((data)=>console.log('$$*$$',data))
+            //     .catch(err=>{console.log(err)})
+            var inputF = document.getElementById("blogId");
+            inputF.value= document.getElementById('blog_id1').innerHTML;
+
+            document.getElementById('userN').value = document.getElementById('userN1').innerHTML;
+            await console.log('value added!!!')
+        }
+    </script>
+   
+    </body>
+</html>

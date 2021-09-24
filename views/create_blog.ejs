@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset = 'UTF-8'>
+       <meta name="viewport" content="width=device-width, initial-scale=1"> 
+       <title>Blog Mark1</title>
+    </head>
+
+    <body>
+        <%- include('D:/Machine learning/topics/backend/blog_app/partials/nav.ejs') %>
+        <!-- <div class='container create_one'>
+            <form action='/blogs' method='POST' >           <!-- method mentioned took action on given path when submit clicked
+                <label for='title'>Blog title</label>
+              
+                  <input type='text' id="title" name='title' required>
+                
+                <label for ='snippet'>Blog snippet:</label>
+              
+                  <input type='text' id='snippet' name='snippet' required>
+
+                <label for='body'>Blog body:</label>
+              
+                  <input type='text' id='body' name='body' required></textarea>
+            
+                <button class='btn btn-primary'>Submit</button>
+            </form>
+
+        </div> -->
+        <!-- enctype='multipart/form-data' -->
+        <!-- ------------------------------------------------------------------ -->
+        <div class="container">
+        <form action='/blogs' method='POST' enctype='multipart/form-data'>
+          <div class = 'form-group'>
+              <label for="title">Blog Title:</label>
+              <input type="text"  id="title" class="form-control" name="title" placeholder="Enter title" required>
+          </div>
+          <div class="form-group">
+              <label for="snippet"> Blog snippet: </label>
+              <input type="text"  id="snippet" name='snippet' class="form-control" placeholder="snippet" required>
+          </div>
+          <div class="form-group">
+              <label for="body">Blog body:</label>
+              <input type="text"  id="body"  name='body' class="form-control" placeholder="enter details" required>
+          </div>
+          
+          <div class="container">
+              <!-- <form action='/upload' method='POST' class='uploader' enctype='multipart/form-data'>  -->
+              <div class="form-group">
+                <label for = 'images'>Upload images:</label>
+                <input type = 'file' class="form-control-file" id='images' name = 'images'>
+              </div>
+              <!-- <button type='submit' class="btn btn-success">Upload</button> -->
+            <!-- </form> -->
+      
+            <button type="submit" class="btn btn-primary">Submit</button>  
+          </form>  </div>
+
+      
+        
+      </div>   
+    </body>
+</html>
+
