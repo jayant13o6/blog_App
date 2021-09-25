@@ -13,8 +13,8 @@
         <div class=' container-fluid details_content'>
             <h2> <%= blog.title %> </h2>
             <div class='content'>
-                <p id='blog_id1' style='display: none;'><%= blog._id %></p>
-                <p id='userN1' style='display: none;'><%= blog.Username %></p>
+                <p id='blog_id1'><%= blog._id %></p>
+                <p id='userN1'><%= Users1.Username %></p>
                 <p><%= blog.body %></p>
                 <% if(blog.image){ %>
                     <img src= '/<%= blog.image%>' alt='error occured' width="200px" height="200px"><br>
@@ -46,7 +46,7 @@
                     <h6 class='mt-0'> Comments:</h6>
                     <% if (Comments) { %>
                         <% Comments.forEach(Comments =>{ %>
-                            <p>comment:</p>
+                            <p>comment by: <%= Users1.Username%></p>
                             <p><%= Comments.comments %></p>
                         
                     <%})} else { %>

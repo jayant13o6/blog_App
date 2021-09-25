@@ -257,28 +257,39 @@ app.get('/blogs/personal', async (req,res) => {
             // res.render('personal_blog',{users: result, title: 'Personal Blog!!'});        
         })
         
-    .catch((err) => {
-        console.log(err)
-    })
+    .catch((err) => { console.log(err) })
         
 })// route ended
 
 
-app.get('/blogs/:id', (req,res) => {
-    const id = req.params.id;
-    console.log('in a get func',id);
-    Blog.findById(id)
-        .then(result =>{
-            comments.find({blogId:id})
-                .then(RES => {
-                    console.log('result:',result);
-                    console.log('RES',RES)
-                    res.render('details', {blog: result,Comments: RES, title: 'Blog details'})})
-                .catch((err)=> {console.log(err)})
-            // <!--{blog: result, variable: 'value'}-->
-            // res.render('view_file string format': object, {})
-        })
-    .catch((err) => {console.log(err)})
+app.get('/blogs/:id', async (req,res) => {
+    
+    const token = req.cookies.cookie1;
+    const verifyUser = jwt.verify(token,'verystrongsecrettokeep');       
+    const userCheck =  await Users.findOne({_id:verifyUser._id})
+    name2=userCheck.Username
+    await Users.find({Username:name2})
+    .then(result1=> {
+        const id = req.params.id;
+        console.log('in a get func',id);
+        Blog.findById(id)
+            .then(result =>{
+                comments.find({blogId:id})
+                    .then(RES => {
+                        console.log('result:',result);
+                        console.log('RES',RES)
+                        console.log('resutl1::',result1);
+
+                        //to check current user logged in 
+                        res.render('details', {blog: result, Users1:result1, Comments: RES, title: 'Blog details'})})                
+                        
+                    .catch((err) => { console.log(err) })})
+
+                    .catch((err)=> {console.log(err)})
+                // <!--{blog: result, variable: 'value'}-->
+                // res.render('view_file string format': object, {})
+            })
+        .catch((err) => {console.log(err)})
 })  
 
 
