@@ -13,8 +13,8 @@
         <div class=' container-fluid details_content'>
             <h2> <%= blog.title %> </h2>
             <div class='content'>
-                <p id='blog_id1'><%= blog._id %></p>
-                <p id='userN1'><%= Users1[0].Username %></p>
+                <p id='blog_id1' style="display: none;"><%= blog._id %></p>
+                <p id='userN1' style='display:none;'><%= Users1[0].Username %></p>
                 <p><%= blog.body %></p>
                 <% if(blog.image){ %>
                     <img src= '/<%= blog.image%>' alt='error occured' width="200px" height="200px"><br>
@@ -64,13 +64,11 @@
             const endpoint = `/blogs/${trash.dataset.doc}`;
 
             fetch(endpoint, {
-                method: 'DELETE'
-            })
+                method: 'DELETE'  })
             .then((response)=> response.json())
             // .then((data) => console.log(data))
             .then((data) => window.location.href = data.redirect)
             .catch(err =>{console.log(err)});
-
         })
 
         async function input_value() {
