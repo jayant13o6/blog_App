@@ -35,7 +35,7 @@ app.use(express.static('./uploads'));
 // register view engine
 app.set('view engine', 'ejs');
 
-
+let API_KEY = 'Ib6p3zQx1SWLBCzkrVGMZQylYSfim0fN'; // for gif api
 
 
 // app.get('path',function (req,res) {
