@@ -7,6 +7,7 @@
     </head>
 
     <body>
+      
         <%- include('D:/Machine learning/topics/backend/blog_app/partials/nav.ejs') %>
         <!-- <div class='container create_one'>
             <form action='/blogs' method='POST' >           <!-- method mentioned took action on given path when submit clicked
@@ -32,32 +33,60 @@
         <form action='/blogs' method='POST' enctype='multipart/form-data'>
           <div class = 'form-group'>
               <label for="title">Blog Title:</label>
-              <input type="text"  id="title" class="form-control" name="title" placeholder="Enter title" required>
+              <input type="text"  id="title" class="form-control" name="title" placeholder="Enter title" >
           </div>
           <div class="form-group">
               <label for="snippet"> Blog snippet: </label>
-              <input type="text"  id="snippet" name='snippet' class="form-control" placeholder="snippet" required>
+              <input type="text"  id="snippet" name='snippet' class="form-control" placeholder="snippet" >
           </div>
           <div class="form-group">
               <label for="body">Blog body:</label>
-              <input type="text"  id="body"  name='body' class="form-control" placeholder="enter details" required>
+              <input type="text"  id="body"  name='body' class="form-control" placeholder="enter details" >
           </div>
           
           <div class="container">
               <!-- <form action='/upload' method='POST' class='uploader' enctype='multipart/form-data'>  -->
-              <div class="form-group">
+              <!-- *********************************************************************************** -->
+                <div class="form-group">
                 <label for = 'images'>Upload images:</label>
                 <input type = 'file' class="form-control-file" id='images' name = 'images'>
               </div>
-              <!-- <button type='submit' class="btn btn-success">Upload</button> -->
-            <!-- </form> -->
-      
+              <!-- **************************************************************************************** -->
+              <button type='submit' class="btn btn-success">Upload</button>
+            </form>
+      <!-- *******************************   for GIFs    ********************************************** -->
+              <!-- <div>
+                <input type = 'text' id='gif' name='gif' placeholder="search your gifs">
+                <button id ='sendApiRequest' type="button" style = 'background-color: green;'>gifyy</button>
+                </div>
+                 <button  onclick="sendApiRequest()">GIFs</button> 
+              </div> -->
+              <br>
             <button type="submit" class="btn btn-primary">Submit</button>  
           </form>  </div>
 
-      
         
       </div>   
     </body>
 </html>
 
+<script>
+  document.getElementById('sendApiRequest').addEventListener('click',sendApiRequest);
+  function sendApiRequest(){
+    var userInput = document.getElementById('gif').value
+    console.log(userInput)
+    let API_KEY = 'Ib6p3zQx1SWLBCzkrVGMZQylYSfim0fN'; // for gif api
+    let API_URL = `https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key=${API_KEY}`
+
+    fetch(API_URL).then((data)=>{
+      return data.json()
+    })
+    .then((json)=>{
+      console.log(json.data[0].images.fixed_height.url)
+      var imgPath = json.data[0].images.fixed_height.url
+      var img = document.createElement('img')
+      img.setAttribute('src',imgPath)
+      document.body.appendChild(img)
+    })
+}
+</script>
