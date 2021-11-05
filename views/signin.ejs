@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +10,7 @@
         
     <div class="container site-title" style="text-align: center;">
 
+        <!-- <%- include('D:/Machine learning/topics/backend/blog_app/partials/nav.ejs') %> -->
         <div class='sign_in'>
             <form action='/users' method='POST'>
                 <div class="form-group">
@@ -39,46 +39,4 @@
             })            
         </script>
     </body>
-=======
-<!DOCTYPE html>
-<html>
-    <head>
-       <meta charset = 'UTF-8'>
-       <meta name="viewport" content="width=device-width, initial-scale=1"> 
-       <title>Blog Mark1</title>
-    </head>
-
-    <body>
-        
-    <div class="container site-title" style="text-align: center;">
-
-        <div class='sign_in'>
-            <form action='/users' method='POST'>
-                <div class="form-group">
-                    <div style="padding-bottom: 20px;">
-                        <label for='Username'>Username(email id)</label>
-                        <input type='email' id="Username" name='Username' required>
-                    </div>
-                    <div style="padding-bottom: 20px;">
-                        <label for ='Password'>Password:</label>
-                        <input type='password' id='Password' name='Password' required>
-                    </div>
-                    
-                    <button id='submit' >Submit</button>
-                    
-                </div>
-            </form>
-            
-        </div>
-        
-        <script>
-        
-            var u_name = document.querySelector('.form-group');
-            u_name.addEventListener('submit', ()=>{
-                name=u_name.Username.value;
-                console.log(name)
-            })            
-        </script>
-    </body>
->>>>>>> e33a353717ea6502b9e2d0a3fa5dee3a5e8c8e00
 </html>
