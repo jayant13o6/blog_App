@@ -25,7 +25,7 @@ mongoose.connect(dbURI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       })
-    .then(() => app.listen(Port, ()=>{console.log('we start express and Mongodb connected')}))  //listen for request
+    .then(() => app.listen(process.env.PORT || 5000, ()=>{console.log('we start express and Mongodb connected')}))  //listen for request
     .catch(err => console.log(err));
 // var new_db = "mongodb://localhost:27017/blog_db"
 
