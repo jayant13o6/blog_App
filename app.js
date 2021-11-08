@@ -18,7 +18,7 @@ const app = express();
 app.use(express.urlencoded({extended:true})); //middleware
 app.use(cookieParser());
 // app.use(uploading())
-const Port = process.env.Port || 8080;
+var PORT = process.env.PORT || 8080;
 // connect to mongodb 
 const dbURI = 'mongodb+srv://12361224:12361224@mark1cluster.tivul.mongodb.net/blog_db?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { 
